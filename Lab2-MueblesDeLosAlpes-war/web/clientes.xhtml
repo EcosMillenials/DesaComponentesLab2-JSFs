@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Admin Clientes" />
+    <ui:define name="body">
+        <h:form>
+
+            <!-- Panel para agregar un nuevo mueble -->
+            <h:panelGroup>
+                <h:panelGrid width="100px" columns="3" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    
+                    <h:outputLabel for="TxtTDocu" value="Tipo Documento"/>
+                    <h:selectOneMenu id="TxtTDocu" value="#{clientesBean.cliente.tipoDocumento}">
+                        <f:selectItems value="#{clientesBean.tiposDocumentos}" />
+                    </h:selectOneMenu>
+                    <h:message id="TipoDMsg" for="TxtTDocu" />
+                    
+                    
+                    <h:outputLabel for="TxtnumDocu" value="Num Documento"/>
+                    <h:inputText id="TxtnumDocu" value="#{clientesBean.cliente.numeroDocumento}" required="true"> </h:inputText>
+                    <h:message id="NumMsg" for="TxtnumDocu" />
+                    
+                    <h:outputLabel for="Txtnombre" value="Nombre"/>
+                    <h:inputText id="Txtnombre" value="#{clientesBean.cliente.nombreCompleto}" required="true"> </h:inputText>
+                    <h:message id="NomMsg" for="Txtnombre" />
+                    
+                    <h:outputLabel for="TxttelRes" value="Telefono Residencia"/>
+                    <h:inputText id="TxttelRes" value="#{clientesBean.cliente.telefonoResidencia}" required="true"> </h:inputText>
+                    <h:message id="telReMsg" for="TxttelRes" />
+                    
+                    <h:outputLabel for="TxttelCal" value="Telefono Celular"/>
+                    <h:inputText id="TxttelCal" value="#{clientesBean.cliente.telefonocelular}" required="true"> </h:inputText>
+                    <h:message id="celMsg" for="TxttelCal" />
+                    
+                    <h:outputLabel for="TxtDireccion" value="Direccion"/>
+                    <h:inputText id="TxtDireccion" value="#{clientesBean.cliente.direccion}" required="true"> </h:inputText>
+                    <h:message id="dirMsg" for="TxtDireccion" />
+                    
+                    <h:outputLabel for="TxtCiudad" value="Ciudad"/>
+                    <h:inputText id="TxtCiudad" value="#{clientesBean.cliente.ciudadResidencia}" required="true"> </h:inputText>
+                    <h:message id="ciudadMsg" for="TxtCiudad" />
+                    
+                    <h:outputLabel for="TxtDepa" value="Departamento"/>
+                    <h:inputText id="TxtDepa" value="#{clientesBean.cliente.departamento}" required="true"> </h:inputText>
+                    <h:message id="depaMsg" for="TxtDepa" />
+                    
+                    <h:outputLabel for="Txtpais" value="Pais"/>
+                    <h:inputText id="Txtpais" value="#{clientesBean.cliente.país}" required="true"> </h:inputText>
+                    <h:message id="paisMsg" for="Txtpais" />
+                    
+                    <h:outputLabel for="Txtprofe" value="Profesion"/>
+                    <h:inputText id="Txtprofe" value="#{clientesBean.cliente.profesion}" required="true"> </h:inputText>
+                    <h:message id="profeMsg" for="Txtprofe" />
+                    
+                    <h:outputLabel for="Txtemail" value="Email"/>
+                    <h:inputText id="Txtemail" value="#{clientesBean.cliente.email}" required="true"> </h:inputText>
+                    <h:message id="emaMsg" for="Txtemail" />
+                    
+                </h:panelGrid>
+
+
+                <h:commandButton value="Agregar" action="#{clientesBean.agregarCliente}" />
+                <h:commandButton value="Limpiar" action="#{clientesBean.limpiar}" />
+            </h:panelGroup>
+            
+        </h:form>
+        <h:form>
+            
+
+                <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                <p:dataTable
+                    id="data"
+                    value="#{clientesBean.clientes}"
+                    var="file"
+                    scrollable="false"
+                    scrollHeight="100px"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    resizableColumns="true"
+                    rows="5">
+
+                           
+                    <p:column headerText="Referencia" sortBy="#{file.numeroDocumento}">
+                        <h:outputText value="#{file.numeroDocumento}" />
+                    </p:column>
+                    
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{file.nombreCompleto}" />
+                    </p:column>
+                    
+                    <p:column headerText="Telefono">
+                        <h:outputText value="#{file.telefonoResidencia}" />
+                    </p:column>
+                    
+                    <p:column headerText="Celular">
+                        <h:outputText value="#{file.telefonocelular}" />
+                    </p:column>
+                    
+                </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>

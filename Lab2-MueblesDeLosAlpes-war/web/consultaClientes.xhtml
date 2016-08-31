@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Consulta Clientes" />
+    <ui:define name="body">
+        <h:form>
+
+            <!-- Panel para agregar un nuevo mueble -->
+            <h:panelGroup>
+                <h:panelGrid width="100px" columns="3" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    
+                     <h:outputLabel for="TxtnumDocu" value="Num Documento"/>
+                    <h:inputText id="TxtnumDocu" value="#{clientesBean.cliente.numeroDocumento}" > </h:inputText>
+                    <h:message id="NumMsg" for="TxtnumDocu" />
+                    
+                    <h:outputLabel for="Txtnombre" value="Nombre"/>
+                    <h:inputText id="Txtnombre" value="#{clientesBean.cliente.nombreCompleto}" > </h:inputText>
+                    <h:message id="NomMsg" for="Txtnombre" />
+                    
+                    <h:outputLabel for="TxttelRes" value="Email"/>
+                    <h:inputText id="TxttelRes" value="#{clientesBean.cliente.email}" > </h:inputText>
+                    <h:message id="telReMsg" for="TxttelRes" />
+                    
+                </h:panelGrid>
+               
+
+                <h:commandButton value="Buscar" action="#{catalogoBean.agregarMueble}" />
+                
+            </h:panelGroup>
+            
+        </h:form>
+        <h:form>
+            
+
+                <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                <p:dataTable
+                    id="data"
+                    value="#{catalogoBean.muebles}"
+                    var="file"
+                    scrollable="false"
+                    scrollHeight="100px"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    resizableColumns="true"
+                    rows="5">
+
+                           
+                    <p:column headerText="Referencia" sortBy="#{file.referencia}">
+                        <h:outputText value="#{file.referencia}" />
+                    </p:column>
+                    
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{file.nombre}" />
+                    </p:column>
+                    
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{file.descripcion}" />
+                    </p:column>
+                    
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{file.tipo}" />
+                    </p:column>
+                    
+                </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>
