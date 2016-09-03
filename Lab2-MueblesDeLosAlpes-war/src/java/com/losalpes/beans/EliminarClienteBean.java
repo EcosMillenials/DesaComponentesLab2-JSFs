@@ -19,13 +19,23 @@ import javax.faces.bean.ViewScoped;
  */
 @ViewScoped
 @ManagedBean
-public class ConsultaClienteBean {
+public class EliminarClienteBean {
     
     
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
 
+    /**
+     * Representa el cliente a eliminar
+     */
+    private Cliente cliente;
+   
+    /**
+     * lista de clientes de la busquedad
+     */
+    private List<Cliente> listaCLientes;
+    
     /**
      * filtro por numero de documento
      */
@@ -41,12 +51,6 @@ public class ConsultaClienteBean {
      */
     private String email;
 
-   
-    /**
-     * lista de clientes de la busquedad
-     */
-    private List<Cliente> listaCLientes;
-
     
 
     /**
@@ -61,7 +65,8 @@ public class ConsultaClienteBean {
     /**
      * Constructor de la clase principal
      */
-    public ConsultaClienteBean() {        
+    public EliminarClienteBean() {
+        cliente = new Cliente();
         clienteService=new ServicioClientesMock();
         listaCLientes = new ArrayList<Cliente>();
         
@@ -72,6 +77,14 @@ public class ConsultaClienteBean {
      */
     public void consultar() {
         listaCLientes = clienteService.consultarClientes(numeroDoc, nombre, email);
+    }
+    
+    /**
+     * elimina el cliente seleccionado
+     */
+    public void eliminar() {
+        clienteService.eliminarCliente(cliente);
+        listaCLientes.remove(cliente);
     }
 
     //-----------------------------------------------------------
@@ -84,6 +97,14 @@ public class ConsultaClienteBean {
 
     public void setListaCLientes(List<Cliente> listaCLientes) {
         this.listaCLientes = listaCLientes;
+    }
+    
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public long getNumeroDoc() {

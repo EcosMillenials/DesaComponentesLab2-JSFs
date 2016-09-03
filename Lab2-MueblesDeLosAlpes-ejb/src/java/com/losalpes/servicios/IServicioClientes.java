@@ -22,4 +22,19 @@ public interface IServicioClientes
      */
     public List<Cliente> darClientes();
     
+    /**
+     * Consulta de clientes por los parametros enviados
+     * @param numeroDoc
+     * @param nombre
+     * @param email
+     * @return 
+     */
+    public List<Cliente> consultarClientes(long numeroDoc, String nombre, String email);
+    
+    /**
+     * Elimina el cliente enviado por parametro
+     * @param cliente cliente a eliminar
+     */
+    public void eliminarCliente(Cliente cliente);
+    
 }

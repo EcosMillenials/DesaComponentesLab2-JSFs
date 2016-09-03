@@ -1,7 +1,4 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!--
-    Document   : catalogo
--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition template="/main-template.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -13,21 +10,26 @@
     <ui:define name="body">
         <h:form>
 
-            <!-- Panel para agregar un nuevo mueble -->
-            <h:panelGroup>
-                <h:panelGrid width="100px" columns="3" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
-                    
-                    <p:commandButton value="Admin Clientes" id="clientes" action="clientes" styleClass="ui-priority-primary" />
-                    <p:commandButton value="Admin Catalogo" id="catalogo" action="catalogo" styleClass="ui-priority-primary" />
-                    <p:commandButton value="Reportes" id="reporte" action="reportes" styleClass="ui-priority-primary" />
-                    
+            <p:panel id="basic" header="Menu" style="margin-bottom:20px" >
+                <h:panelGrid columns="1" cellpadding="10">
+                    <p:menu>
+                        <p:submenu label="Admin Clientes">
+                            <p:menuitem value="Crear" outcome="clientes" icon="ui-icon-star"/>
+                            <p:menuitem value="Consultar" outcome="consultaClientes" icon="ui-icon-star"/>
+                            <p:menuitem value="Eliminar" outcome="eliminarClientes" icon="ui-icon-star"/>
+                        </p:submenu>
+                        <p:submenu label="Admin Catalogos">
+                            <p:menuitem value="Catalogo" outcome="catalogo" icon="ui-icon-star"/>
+                        </p:submenu>
+                        <p:submenu label="Reportes">                            
+                            <p:menuitem value="Reporte" outcome="reportes" icon="ui-icon-star"/>
+                        </p:submenu>
+                    </p:menu>
                 </h:panelGrid>
+            </p:panel>
 
-                
-            </h:panelGroup>
-            
         </h:form>
-        
+
 
     </ui:define>
 

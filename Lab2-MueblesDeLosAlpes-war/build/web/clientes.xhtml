@@ -11,65 +11,69 @@
 
     <ui:param name="titulo" value="Admin Clientes" />
     <ui:define name="body">
-        <h:form>
+        <h:form id="Forma">
+            
+            <p:outputPanel deferred="true">
+                <p:button outcome="menu" value="Menu Principal"></p:button>
+            </p:outputPanel>
 
             <!-- Panel para agregar un nuevo mueble -->
-            <h:panelGroup>
+            <p:panel id="basic" header="Crear Cliente" style="margin-bottom:20px" >
                 <h:panelGrid width="100px" columns="3" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
                     
                     <h:outputLabel for="TxtTDocu" value="Tipo Documento"/>
                     <h:selectOneMenu id="TxtTDocu" value="#{clientesBean.cliente.tipoDocumento}">
                         <f:selectItems value="#{clientesBean.tiposDocumentos}" />
                     </h:selectOneMenu>
-                    <h:message id="TipoDMsg" for="TxtTDocu" />
+                    <h:message style="color:red" id="TipoDMsg" for="TxtTDocu" />
                     
                     
                     <h:outputLabel for="TxtnumDocu" value="Num Documento"/>
                     <h:inputText id="TxtnumDocu" value="#{clientesBean.cliente.numeroDocumento}" required="true"> </h:inputText>
-                    <h:message id="NumMsg" for="TxtnumDocu" />
+                    <h:message id="NumMsg" style="color:red" for="TxtnumDocu" />
                     
                     <h:outputLabel for="Txtnombre" value="Nombre"/>
-                    <h:inputText id="Txtnombre" value="#{clientesBean.cliente.nombreCompleto}" required="true"> </h:inputText>
-                    <h:message id="NomMsg" for="Txtnombre" />
+                    <h:inputText id="Txtnombre" validatorMessage="Campo Obligatorio" value="#{clientesBean.cliente.nombreCompleto}" required="true"> </h:inputText>
+                    <h:message style="color:red" id="NomMsg" for="Txtnombre" />
                     
                     <h:outputLabel for="TxttelRes" value="Telefono Residencia"/>
                     <h:inputText id="TxttelRes" value="#{clientesBean.cliente.telefonoResidencia}" required="true"> </h:inputText>
                     <h:message id="telReMsg" for="TxttelRes" />
                     
                     <h:outputLabel for="TxttelCal" value="Telefono Celular"/>
-                    <h:inputText id="TxttelCal" value="#{clientesBean.cliente.telefonocelular}" required="true"> </h:inputText>
-                    <h:message id="celMsg" for="TxttelCal" />
+                    <h:inputText id="TxttelCal" value="#{clientesBean.cliente.telefonocelular}" > </h:inputText>
+                    <h:message style="color:red" id="celMsg" for="TxttelCal" />
                     
                     <h:outputLabel for="TxtDireccion" value="Direccion"/>
                     <h:inputText id="TxtDireccion" value="#{clientesBean.cliente.direccion}" required="true"> </h:inputText>
-                    <h:message id="dirMsg" for="TxtDireccion" />
+                    <h:message style="color:red" id="dirMsg" for="TxtDireccion" />
                     
                     <h:outputLabel for="TxtCiudad" value="Ciudad"/>
                     <h:inputText id="TxtCiudad" value="#{clientesBean.cliente.ciudadResidencia}" required="true"> </h:inputText>
-                    <h:message id="ciudadMsg" for="TxtCiudad" />
+                    <h:message style="color:red" id="ciudadMsg" for="TxtCiudad" />
                     
                     <h:outputLabel for="TxtDepa" value="Departamento"/>
                     <h:inputText id="TxtDepa" value="#{clientesBean.cliente.departamento}" required="true"> </h:inputText>
-                    <h:message id="depaMsg" for="TxtDepa" />
+                    <h:message style="color:red" id="depaMsg" for="TxtDepa" />
                     
                     <h:outputLabel for="Txtpais" value="Pais"/>
                     <h:inputText id="Txtpais" value="#{clientesBean.cliente.país}" required="true"> </h:inputText>
-                    <h:message id="paisMsg" for="Txtpais" />
+                    <h:message style="color:red" id="paisMsg" for="Txtpais" />
                     
                     <h:outputLabel for="Txtprofe" value="Profesion"/>
-                    <h:inputText id="Txtprofe" value="#{clientesBean.cliente.profesion}" required="true"> </h:inputText>
+                    <h:inputText id="Txtprofe" value="#{clientesBean.cliente.profesion}"> </h:inputText>
                     <h:message id="profeMsg" for="Txtprofe" />
                     
                     <h:outputLabel for="Txtemail" value="Email"/>
                     <h:inputText id="Txtemail" value="#{clientesBean.cliente.email}" required="true"> </h:inputText>
-                    <h:message id="emaMsg" for="Txtemail" />
+                    <h:message style="color:red" id="emaMsg" for="Txtemail" />
                     
                 </h:panelGrid>
 
 
                 <h:commandButton value="Agregar" action="#{clientesBean.agregarCliente}" />
                 <h:commandButton value="Limpiar" action="#{clientesBean.limpiar}" />
-            </h:panelGroup>
+            </p:panel>
             
         </h:form>
         <h:form>

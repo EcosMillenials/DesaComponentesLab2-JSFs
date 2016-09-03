@@ -12,36 +12,34 @@
             <p:outputPanel deferred="true">
                 <p:button outcome="menu" value="Menu Principal"></p:button>
             </p:outputPanel>
-            <p:panel id="basic" header="Consulta Clientes" style="margin-bottom:20px" >
+            <p:panel id="basic" header="Eliminar Clientes" style="margin-bottom:20px" >
 
                 <h:panelGrid width="100px" columns="3" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
 
                     <h:outputLabel for="TxtnumDocu" value="Num Documento"/>
-                    <h:inputText id="TxtnumDocu" value="#{consultaClienteBean.numeroDoc}" > </h:inputText>
+                    <h:inputText id="TxtnumDocu" value="#{eliminarClienteBean.numeroDoc}" > </h:inputText>
                     <h:message id="NumMsg" for="TxtnumDocu" />
 
                     <h:outputLabel for="Txtnombre" value="Nombre"/>
-                    <h:inputText id="Txtnombre" value="#{consultaClienteBean.nombre}" > </h:inputText>
+                    <h:inputText id="Txtnombre" value="#{eliminarClienteBean.nombre}" > </h:inputText>
                     <h:message id="NomMsg" for="Txtnombre" />
 
                     <h:outputLabel for="TxttelRes" value="Email"/>
-                    <h:inputText id="TxttelRes" value="#{consultaClienteBean.email}" > </h:inputText>
+                    <h:inputText id="TxttelRes" value="#{eliminarClienteBean.email}" > </h:inputText>
                     <h:message id="telReMsg" for="TxttelRes" />
 
                 </h:panelGrid>
 
-                <h:commandButton value="Buscar" action="#{consultaClienteBean.consultar}" />
+                <h:commandButton value="Buscar" action="#{eliminarClienteBean.consultar}" />
 
             </p:panel>
 
         </h:form>
-        <h:form>
+        <h:form id="forma">
 
-
-            <!-- Se crea una tabla donde se presentan los muebles del sistema -->
-            <p:dataTable rendered="#{consultaClienteBean.listaCLientes.size() > 0}"
+            <p:dataTable rendered="#{eliminarClienteBean.listaCLientes.size() > 0}"
                          id="data"
-                         value="#{consultaClienteBean.listaCLientes}"
+                         value="#{eliminarClienteBean.listaCLientes}"
                          var="file"
                          scrollable="false"
                          scrollHeight="100px"
@@ -51,23 +49,29 @@
                          rows="5">
 
 
-                <p:column headerText="Referencia" sortBy="#{file.numeroDocumento}">
+                <p:column headerText="Numero Docuemnto" sortBy="#{file.numeroDocumento}">
                     <h:outputText value="#{file.numeroDocumento}" />
                 </p:column>
 
                 <p:column headerText="Nombre">
                     <h:outputText value="#{file.nombreCompleto}" />
                 </p:column>
-
-                <p:column headerText="Descripción">
-                    <h:outputText value="#{file.telefonoResidencia}" />
-                </p:column>
-
-                <p:column headerText="Tipo">
+                <p:column headerText="Email">
                     <h:outputText value="#{file.email}" />
+                </p:column>
+                <p:column style="width:32px;text-align: center">
+                    <p:commandButton update=":forma" actionListener="#{eliminarClienteBean.eliminar()}" icon="ui-icon-delete" title="View">
+                        <p:confirm header="Confirmacion" message="Desea eliminar el cliente?" icon="ui-icon-alert" />
+                        <f:setPropertyActionListener value="#{file}" target="#{eliminarClienteBean.cliente}" />
+                    </p:commandButton>
                 </p:column>
 
             </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
 
         </h:form>
 

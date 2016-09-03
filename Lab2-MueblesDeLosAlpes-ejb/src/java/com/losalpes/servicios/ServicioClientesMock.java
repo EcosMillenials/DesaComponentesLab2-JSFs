@@ -85,5 +85,27 @@ public class ServicioClientesMock implements IServicioClientes
     {
         return clientes;
     }
+    
+    /**
+     * Consulta de clientes por los parametros enviados
+     * @param numeroDoc
+     * @param nombre
+     * @param email
+     * @return 
+     */
+    @Override
+    public List<Cliente> consultarClientes(long numeroDoc, String nombre, 
+            String email) {
+        return clientes;
+    }
+    
+    /**
+     * Elimina el cliente enviado por parametro
+     * @param cliente cliente a eliminar
+     */
+    @Override
+    public void eliminarCliente(Cliente cliente) {
+        
+    }
 
 }
