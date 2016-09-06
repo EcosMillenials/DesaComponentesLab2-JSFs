@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Reportes" />
+    <ui:define name="body">
+        <h:form>
+
+            <p:outputPanel deferred="true">
+                <p:button outcome="menuPrincipal" value="Menu Principal"></p:button>
+            </p:outputPanel>
+
+            <p:panel id="basic" header="Reporte Ventas Diarias" style="margin-bottom:20px" >
+                <h:panelGrid width="100px" columns="3" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+
+                    <h:outputLabel for="TxtnumDocu" value="Ciudad"/>
+                    <h:inputText id="TxtnumDocu" value="#{reportesBean.ciudad}" > </h:inputText>
+                    <h:message id="NumMsg" for="TxtnumDocu" />
+
+                    <h:outputLabel for="Txtfinicio" value="Fecha inicio"/>
+                    <p:calendar id="Txtfinicio" value="#{reportesBean.fechaInicio}" />                    
+                    <h:message id="NomMsg" for="Txtfinicio" />
+
+                    <h:outputLabel for="TxtfFin" value="Fecha Fin"/>
+                    <p:calendar id="TxtfFin" value="#{reportesBean.fechaFin}" />
+                    <h:message id="telReMsg" for="TxtfFin" />
+
+                </h:panelGrid>
+
+                <h:commandButton value="Buscar" action="#{reportesBean.reporteVentasDiarias}" />
+            </p:panel>    
+
+
+
+            <p:dataTable var="reporte" value="#{reportesBean.ventasDiarias}" 
+                         rendered="#{reportesBean.ventasDiarias.size() > 0}">
+                <f:facet name="header">
+                    Ventas Diarias
+                </f:facet>
+
+                <p:columnGroup type="header">                    
+                    <p:row>
+                        <p:column headerText="Nombre" />
+                        <p:column headerText="Cantidad" />
+                        <p:column headerText="Costo Unidad" />
+                        <p:column headerText="Costo Total" />
+                    </p:row>
+                </p:columnGroup>
+
+                <p:subTable var="diario" value="#{reporte.ventas}">
+                    <f:facet name="header">
+                        <h:outputText value="Tipo de Mueble: #{reporte.tipoMueble}" />
+                    </f:facet>
+                    <p:column>
+                        <h:outputText value="#{diario.nombre}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{diario.cantidad}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{diario.constoUnitario}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{diario.costoTotal}" />
+                    </p:column>
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column colspan="3" footerText="Total: " style="text-align:right"/>
+                            <p:column footerText="#{reporte.total}" />                                    
+                        </p:row>
+                    </p:columnGroup>
+                </p:subTable>
+            </p:dataTable>         
+
+        </h:form>
+
+
+    </ui:define>
+
+
+</ui:composition>
