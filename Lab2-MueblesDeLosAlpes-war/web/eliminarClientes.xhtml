@@ -59,8 +59,9 @@
                 <p:column headerText="Email">
                     <h:outputText value="#{file.email}" />
                 </p:column>
-                <p:column style="width:32px;text-align: center">
-                    <p:commandButton update=":forma" actionListener="#{eliminarClienteBean.eliminar()}" icon="ui-icon-delete" title="View">
+                <p:column headerText="Eliminar" style="width:40px;text-align: center">
+                    <p:commandButton update="data" actionListener="#{eliminarClienteBean.eliminar()}" 
+                                     icon="ui-icon-close" title="View">
                         <p:confirm header="Confirmacion" message="Desea eliminar el cliente?" icon="ui-icon-alert" />
                         <f:setPropertyActionListener value="#{file}" target="#{eliminarClienteBean.cliente}" />
                     </p:commandButton>

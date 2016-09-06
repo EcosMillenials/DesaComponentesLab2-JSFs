@@ -7,11 +7,11 @@ package com.losalpes.bos;
 
 /**
  * Clase que representa un cliente
+ *
  * @author l.valbuena
  */
 public class Cliente {
-    
-    
+
     private TipoDocumento tipoDocumento;
     private long numeroDocumento;
     private String nombreCompleto;
@@ -23,17 +23,17 @@ public class Cliente {
     private String país;
     private String profesion;
     private String email;
-    
 
     /**
      * Constructor sin parametros
      */
     public Cliente() {
-        
+
     }
-    
+
     /**
      * Constructor de la clase con parametros
+     *
      * @param tipoDocumento
      * @param numeroDocumento
      * @param nombreCompleto
@@ -44,10 +44,10 @@ public class Cliente {
      * @param departamento
      * @param país
      * @param profesion
-     * @param email 
+     * @param email
      */
-    public Cliente(TipoDocumento tipoDocumento, long numeroDocumento, String nombreCompleto, 
-            long telefonoResidencia, long telefonocelular, String direccion, String ciudadResidencia, 
+    public Cliente(TipoDocumento tipoDocumento, long numeroDocumento, String nombreCompleto,
+            long telefonoResidencia, long telefonocelular, String direccion, String ciudadResidencia,
             String departamento, String país, String profesion, String email) {
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
@@ -61,9 +61,6 @@ public class Cliente {
         this.profesion = profesion;
         this.email = email;
     }
-    
-    
-    
 
     public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
@@ -152,9 +149,25 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
-    
-    
+
+    /**
+     * 
+     * @param obj
+     * @return 
+     */
+    public boolean equals(Object obj) {
+        if (obj instanceof Cliente) {
+            Cliente tmpCliente = (Cliente) obj;
+            
+            if (this.numeroDocumento == tmpCliente.numeroDocumento
+                && this.nombreCompleto.equals(tmpCliente.nombreCompleto)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
 }
