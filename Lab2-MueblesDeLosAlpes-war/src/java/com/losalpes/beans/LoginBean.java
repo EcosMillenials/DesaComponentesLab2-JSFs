@@ -86,7 +86,7 @@ public class LoginBean
             }
             else
             {
-                return "";
+                return "carritoCompras.xhtml";
             }
         }
         catch (AutenticacionException ex)
