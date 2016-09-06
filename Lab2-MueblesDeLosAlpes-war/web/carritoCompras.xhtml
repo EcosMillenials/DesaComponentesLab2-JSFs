@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+
+        <h:form id="form">
+                <h3>Muebles Disponibles</h3>
+                <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                <p:dataTable
+                    id="data"
+                    value="#{carritoBean.lstMueblesDisponibles}"
+                    var="file"
+                    scrollable="false"
+                    scrollHeight="100px"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    resizableColumns="true"
+                    rows="5">
+
+                           
+                    <p:column headerText="Referencia" sortBy="#{file.referencia}">
+                        <h:outputText value="#{file.referencia}" />
+                    </p:column>
+                    
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{file.nombre}" />
+                    </p:column>
+                    
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{file.tipo}" />
+                    </p:column>
+                    
+                    <p:column style="text-align: center;" headerText="Mueble">
+                        <p:graphicImage value="./resources/img/pag/#{file.imagen}" />
+                    </p:column>
+                    
+                    <p:column style="width:32px;text-align: center">
+                        <p:commandButton update=":form:muebleDetail" oncomplete="PF('muebleDialog').show()" icon="ui-icon-search" title="View">
+                           <f:setPropertyActionListener value="#{file}" target="#{carritoBean.muebleSeleccionado}" />
+                       </p:commandButton>
+                   </p:column>
+                    
+                </p:dataTable>
+                <br/>
+                <br/>
+                <div align="right">
+                    <p:commandButton rendered="#{not empty carritoBean.lstMueblesSeleccionados}" value="Ver resumen de compra" action="carritoResumen" />
+                </div>
+                
+                <p:dialog header="Informacion Mueble" widgetVar="muebleDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="muebleDetail" style="text-align:center;">
+                        <p:panelGrid  columns="2" rendered="#{not empty carritoBean.muebleSeleccionado}" columnClasses="label,value">
+                            <f:facet name="header">
+                                <p:graphicImage value="./resources/img/pag/#{carritoBean.muebleSeleccionado.imagen}" />
+                            </f:facet>
+                            
+                            <h:outputText value="Referencia:" />
+                            <h:outputText value="#{carritoBean.muebleSeleccionado.referencia}" />
+
+                            <h:outputText value="Nombre:" />
+                            <h:outputText value="#{carritoBean.muebleSeleccionado.nombre}" />
+
+                            <h:outputText value="Descripcion:" />
+                            <h:outputText value="#{carritoBean.muebleSeleccionado.descripcion}"/>
+
+                            <h:outputText value="Tipo: " />
+                            <h:outputText value="#{carritoBean.muebleSeleccionado.tipo}" />
+                            
+                            <h:outputText value="Precio: " />
+                            <h:outputText value="$#{carritoBean.muebleSeleccionado.precio}" />
+                        </p:panelGrid>
+                        
+                        <p:commandButton  value="Agregar" actionListener="#{carritoBean.agregarACarrito}" action="carritoResumen" />
+                        <h:commandButton value="Cerrar" onclick="PF('muebleDialog').hide()"/>
+                    </p:outputPanel>
+                </p:dialog>
+                
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:param name="titulo" value="Muebles Seleccionados" />
+    <ui:define name="body">
+
+        <h:form id="form">
+            
+                <h:panelGroup id="pngSelect" rendered="#{not empty carritoBean.lstMueblesSeleccionados}">
+                    <h3>Muebles seleccionados</h3>
+                    <p:dataTable
+                        id="dataSelect"
+                        value="#{carritoBean.lstMueblesSeleccionados}"
+                        var="fileSelect"
+                        scrollable="false"
+                        scrollHeight="100px"
+                        paginator="true"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        resizableColumns="true"
+                        rows="5">
+
+
+                        <p:column headerText="Referencia" sortBy="#{fileSelect.referencia}">
+                            <h:outputText value="#{fileSelect.referencia}" />
+                        </p:column>
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{fileSelect.nombre}" />
+                        </p:column>
+
+                        <p:column headerText="Precio">
+                            <h:outputText value="#{fileSelect.precio}" />
+                        </p:column>
+                        
+                        <p:column style="text-align: center;" headerText="Mueble">
+                            <p:graphicImage value="./resources/img/pag/#{fileSelect.imagen}" />
+                        </p:column>
+
+                    </p:dataTable>
+                    <br/>
+                    <br/>
+                    <div align="right">
+                        <p:commandButton value="Continuar comprando" action="carritoCompras" />
+                        <p:commandButton value="Efectuar compra" action="#{carritoBean.irAResumenCompra}"
+                                         update=":form:resumenDetail"
+                                         oncomplete="PF('resumenDialog').show()" />
+                    </div>
+                    
+                    <p:dialog header="Resumen de compra" widgetVar="resumenDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="resumenDetail" style="text-align:center;">
+                            <p:panelGrid  columns="2" columnClasses="label,value">
+                                <h4>Revisa y confirma tu pedido: revisa detenidamente y a continuación haz clic en "Pagar"</h4>
+                                <h:panelGrid  columns="2" columnClasses="label,value" border="0">
+
+                                    <h:outputText style="text-align: left;" value="Valor libros:" />
+                                    <h:outputText style="text-align: right;" value="$#{carritoBean.valorMueblesSel}" />
+
+                                    <h:outputText style="text-align: left;" value="Valor envío:" />
+                                    <h:outputText style="text-align: right;" value="$0.00" />
+
+                                    <h:outputText style="text-align: left;" value="Total:" />
+                                    <h:outputText style="text-align: right;" value="$#{carritoBean.valorMueblesSel}"/>
+                                </h:panelGrid>
+                            </p:panelGrid>
+                            <br/>
+                            <div align="right">
+                                <p:commandButton value="Pagar" actionListener="#{carritoBean.pagar}" action="resumenCompra"/>
+                            </div>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:panelGroup>
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>

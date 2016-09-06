@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+
+        <h:form id="form">
+            <p:panel id="basic" header="Descripción de la venta" footer="Detalle de su compra" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="10" border="0">
+
+                        <h:outputText value="Referencia:" />
+                        <h:outputText style="text-align: right;" value="#{carritoBean.compra.referencia}" />
+
+                        <h:outputText value="Valor:" />
+                        <h:outputText style="text-align: right;" value="$#{carritoBean.compra.valor}" />
+
+                        <h:outputText value="Descripción:" />
+                        <h:outputText style="text-align: right;" 
+                                      value="#{carritoBean.lstMueblesSeleccionados.size()} Mueble(s) - Códigos referencia: #{carritoBean.compra.descripcion}"/>
+                </h:panelGrid>
+                <br/>
+                <div align="right">
+                    <p:commandButton value="Confirmar pago" actionListener="#{carritoBean.confirmaPago}" oncomplete="PF('confirmacionDialog').show()"/>
+                </div>
+            </p:panel>
+            
+            <p:dialog header="¡Compra exittosa!" widgetVar="confirmacionDialog" modal="true" showEffect="fade" hideEffect="fade" 
+                      resizable="false" closable="false">
+                <p:outputPanel id="confirmacionDetail" style="text-align:center;">
+                    <h4>¡La compra se realizó con éxito!</h4>
+                    <br/>
+                    <div align="right">
+                        <p:commandButton value="Aceptar" action="carritoCompras"/>
+                    </div>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>

@@ -40,11 +40,22 @@ public class Mueble
      * Tipo de mueble.
      */
     private TipoMueble tipo;
+    
+    /**
+     * Precio del mueble. 
+     */
+    private double precio;
 
     /**
      * Indica si el mueble fue seleccionado
      */
     private boolean seleccion;
+    
+    /**
+     * Imagen del mueble
+     */
+    private String imagen;
+    
 
     //-----------------------------------------------------------
     // Constructores
@@ -63,14 +74,18 @@ public class Mueble
      * @param referencia Referencia del mueble
      * @param nombre Nombre del mueble
      * @param descripcion Descripión del mueble
+     * @param precio Precio del mueble
      * @param tipo Tipo de mueble
+     * @param imagen Imagen del mueble
      */
-    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo)
+    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo, double precio, String imagen)
     {
         this.referencia = referencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
+        this.precio = precio;
+        this.imagen = imagen;
     }
 
     //-----------------------------------------------------------
@@ -166,5 +181,19 @@ public class Mueble
         this.seleccion = seleccion;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
 
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 }
