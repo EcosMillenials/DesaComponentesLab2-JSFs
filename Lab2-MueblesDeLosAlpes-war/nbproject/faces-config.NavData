@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="eliminarClientes.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="jsp/resultadoEliminar.jsp" x="150" y="450" zoom="true"/>
+        <Node id="jsp/agregarEstudiante.jsp" x="400" y="450" zoom="true"/>
+        <Node id="*" x="150" y="150" zoom="true"/>
+        <Node id="reportes.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="clientes.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="jsp/resultadoBusqueda.jsp" x="150" y="300" zoom="true"/>
+        <Node id="jsp/buscarEstudiantes.jsp" x="650" y="450" zoom="true"/>
+        <Node id="main-template.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="jsp/inicio.jsp" x="650" y="300" zoom="true"/>
+        <Node id="catalogo.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="consultaClientes.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="jsp/editarEstudiante.jsp" x="400" y="600" zoom="true"/>
+        <Node id="menu.xhtml" x="400" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

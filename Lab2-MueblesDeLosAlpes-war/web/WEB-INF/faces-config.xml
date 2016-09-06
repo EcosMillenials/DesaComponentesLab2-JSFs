@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    		
+  	<!-- Reglas de Navegación -->
+  	<navigation-rule>
+		<description>Desde cualquier página volver al menu inicio</description>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>menuPrincipal</from-outcome>
+			<to-view-id>faces/menu.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+  	<navigation-rule>
+		<description>Seleccionar opciones de la pagina de menu principal</description>
+                <from-view-id>*</from-view-id>                
+		<navigation-case>
+			<from-outcome>crearClientes</from-outcome>
+			<to-view-id>faces/clientes.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>consultarClientes</from-outcome>
+			<to-view-id>faces/consultaClientes.xhtml</to-view-id>
+		</navigation-case>
+                <navigation-case>
+			<from-outcome>consultarClientes</from-outcome>
+			<to-view-id>faces/consultaClientes.xhtml</to-view-id>
+		</navigation-case>
+                <navigation-case>
+			<from-outcome>eliminarClientes</from-outcome>
+			<to-view-id>faces/eliminarClientes.xhtml</to-view-id>
+		</navigation-case>
+                <navigation-case>
+			<from-outcome>adminCatalogo</from-outcome>
+			<to-view-id>faces/catalogo.xhtml</to-view-id>
+		</navigation-case>
+                <navigation-case>
+			<from-outcome>reporteVentas</from-outcome>
+			<to-view-id>faces/reportes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	
+</faces-config>
+
+
